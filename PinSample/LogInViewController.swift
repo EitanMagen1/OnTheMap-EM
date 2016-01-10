@@ -62,9 +62,7 @@ class LogInViewController: UIViewController {
                 self.logInText.text = "Login To Udacity"
                 self.passwordTextField.text = ""
                 self.showActivityIndicator()//flips the condition of the indictor , stops the animation once logged in
-
-                let controller = self.storyboard!.instantiateViewControllerWithIdentifier("MapViewController") as! MapViewController
-                self.presentViewController(controller, animated: true, completion: nil)
+                self.performSegueWithIdentifier("NavigationSague", sender: self)
             })
         }
         
@@ -155,8 +153,6 @@ class LogInViewController: UIViewController {
                     }
                 
                 /* 6. Use the data! */
-                print("\(UserID)")
-              // self.appDelegate.userID = UserID
             }
             
             /* 7. Start the request */
