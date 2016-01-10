@@ -28,14 +28,14 @@
 
 /* Begin PBXFileReference section */
 		46DCE19C1C3E9F2C00C71398 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
-		4DFABCE21AC0CBAC00D21C43 /* OnTheMap-EM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OnTheMap-EM.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4DFABCE21AC0CBAC00D21C43 /* OnTheMap-EM1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OnTheMap-EM1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DFABCE61AC0CBAC00D21C43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DFABCE71AC0CBAC00D21C43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DFABCE91AC0CBAC00D21C43 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		4DFABCEC1AC0CBAC00D21C43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4DFABCEE1AC0CBAC00D21C43 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4DFABCF11AC0CBAC00D21C43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		4DFABCF71AC0CBAC00D21C43 /* OnTheMap-EM.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "OnTheMap-EM.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4DFABCF71AC0CBAC00D21C43 /* OnTheMap-EM1.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "OnTheMap-EM1.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DFABCFC1AC0CBAC00D21C43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DFABCFD1AC0CBAC00D21C43 /* PinSampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinSampleTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,8 +70,8 @@
 		4DFABCE31AC0CBAC00D21C43 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4DFABCE21AC0CBAC00D21C43 /* OnTheMap-EM.app */,
-				4DFABCF71AC0CBAC00D21C43 /* OnTheMap-EM.xctest */,
+				4DFABCE21AC0CBAC00D21C43 /* OnTheMap-EM1.app */,
+				4DFABCF71AC0CBAC00D21C43 /* OnTheMap-EM1.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,9 +118,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4DFABCE11AC0CBAC00D21C43 /* OnTheMap-EM */ = {
+		4DFABCE11AC0CBAC00D21C43 /* OnTheMap-EM1 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4DFABD011AC0CBAC00D21C43 /* Build configuration list for PBXNativeTarget "OnTheMap-EM" */;
+			buildConfigurationList = 4DFABD011AC0CBAC00D21C43 /* Build configuration list for PBXNativeTarget "OnTheMap-EM1" */;
 			buildPhases = (
 				4DFABCDE1AC0CBAC00D21C43 /* Sources */,
 				4DFABCDF1AC0CBAC00D21C43 /* Frameworks */,
@@ -130,14 +130,14 @@
 			);
 			dependencies = (
 			);
-			name = "OnTheMap-EM";
+			name = "OnTheMap-EM1";
 			productName = PinSample;
-			productReference = 4DFABCE21AC0CBAC00D21C43 /* OnTheMap-EM.app */;
+			productReference = 4DFABCE21AC0CBAC00D21C43 /* OnTheMap-EM1.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4DFABCF61AC0CBAC00D21C43 /* OnTheMap-EMTests */ = {
+		4DFABCF61AC0CBAC00D21C43 /* OnTheMap-EM1Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4DFABD041AC0CBAC00D21C43 /* Build configuration list for PBXNativeTarget "OnTheMap-EMTests" */;
+			buildConfigurationList = 4DFABD041AC0CBAC00D21C43 /* Build configuration list for PBXNativeTarget "OnTheMap-EM1Tests" */;
 			buildPhases = (
 				4DFABCF31AC0CBAC00D21C43 /* Sources */,
 				4DFABCF41AC0CBAC00D21C43 /* Frameworks */,
@@ -148,9 +148,9 @@
 			dependencies = (
 				4DFABCF91AC0CBAC00D21C43 /* PBXTargetDependency */,
 			);
-			name = "OnTheMap-EMTests";
+			name = "OnTheMap-EM1Tests";
 			productName = PinSampleTests;
-			productReference = 4DFABCF71AC0CBAC00D21C43 /* OnTheMap-EM.xctest */;
+			productReference = 4DFABCF71AC0CBAC00D21C43 /* OnTheMap-EM1.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -173,7 +173,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4DFABCDD1AC0CBAC00D21C43 /* Build configuration list for PBXProject "OnTheMap-EM" */;
+			buildConfigurationList = 4DFABCDD1AC0CBAC00D21C43 /* Build configuration list for PBXProject "OnTheMap-EM1" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -186,8 +186,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4DFABCE11AC0CBAC00D21C43 /* OnTheMap-EM */,
-				4DFABCF61AC0CBAC00D21C43 /* OnTheMap-EMTests */,
+				4DFABCE11AC0CBAC00D21C43 /* OnTheMap-EM1 */,
+				4DFABCF61AC0CBAC00D21C43 /* OnTheMap-EM1Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -236,7 +236,7 @@
 /* Begin PBXTargetDependency section */
 		4DFABCF91AC0CBAC00D21C43 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4DFABCE11AC0CBAC00D21C43 /* OnTheMap-EM */;
+			target = 4DFABCE11AC0CBAC00D21C43 /* OnTheMap-EM1 */;
 			targetProxy = 4DFABCF81AC0CBAC00D21C43 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -346,7 +346,7 @@
 				INFOPLIST_FILE = PinSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Udacity.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "OnTheMap-EM";
+				PRODUCT_NAME = "OnTheMap-EM1";
 			};
 			name = Debug;
 		};
@@ -357,7 +357,7 @@
 				INFOPLIST_FILE = PinSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Udacity.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "OnTheMap-EM";
+				PRODUCT_NAME = "OnTheMap-EM1";
 			};
 			name = Release;
 		};
@@ -376,8 +376,8 @@
 				INFOPLIST_FILE = PinSampleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Udacity.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "OnTheMap-EM";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OnTheMap-EM.app/OnTheMap-EM";
+				PRODUCT_NAME = "OnTheMap-EM1";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OnTheMap-EM1.app/OnTheMap-EM1";
 			};
 			name = Debug;
 		};
@@ -392,15 +392,15 @@
 				INFOPLIST_FILE = PinSampleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Udacity.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "OnTheMap-EM";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OnTheMap-EM.app/OnTheMap-EM";
+				PRODUCT_NAME = "OnTheMap-EM1";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OnTheMap-EM1.app/OnTheMap-EM1";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4DFABCDD1AC0CBAC00D21C43 /* Build configuration list for PBXProject "OnTheMap-EM" */ = {
+		4DFABCDD1AC0CBAC00D21C43 /* Build configuration list for PBXProject "OnTheMap-EM1" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4DFABCFF1AC0CBAC00D21C43 /* Debug */,
@@ -409,7 +409,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4DFABD011AC0CBAC00D21C43 /* Build configuration list for PBXNativeTarget "OnTheMap-EM" */ = {
+		4DFABD011AC0CBAC00D21C43 /* Build configuration list for PBXNativeTarget "OnTheMap-EM1" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4DFABD021AC0CBAC00D21C43 /* Debug */,
@@ -418,7 +418,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4DFABD041AC0CBAC00D21C43 /* Build configuration list for PBXNativeTarget "OnTheMap-EMTests" */ = {
+		4DFABD041AC0CBAC00D21C43 /* Build configuration list for PBXNativeTarget "OnTheMap-EM1Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4DFABD051AC0CBAC00D21C43 /* Debug */,
