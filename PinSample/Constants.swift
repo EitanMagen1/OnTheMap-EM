@@ -2,19 +2,20 @@
 //  Constants.swift
 //  On The Map
 //
-//  Created by Eitan Magen on 10/1/15.
+//  Created by Eitan Magen on 06/1/16.
 //  Copyright © 2016 Eitan Magen . All rights reserved.
 //
 
 import Foundation
 
-class Constants: LogInViewController {
-    
-    var appDelegate : AppDelegate!
-    
-    var session: NSURLSession!
-//extension ParseClient {
-    
+// MARK: Enum to indicate client
+enum ClientSelection {
+    case Udacity
+    case Parse
+}
+
+class ParseConstants  {
+    //Parse Application ID and REST API Key for “On the Map”:
     struct URLConstants {
         static let ApplicationID: String = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
         static let RestAPIKey: String = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
@@ -30,8 +31,8 @@ class Constants: LogInViewController {
     struct HTTPFields {
         static let AppID: String = "X-Parse-Application-Id"
         static let RestAPIKey: String = "X-Parse-REST-API-Key"
-        static let ApplicationJSON = UdacityClient.HTTPFields.ApplicationJSON
-        static let ContentType: String = UdacityClient.HTTPFields.ContentType
+        static let ApplicationJSON = UdacityConstants.HTTPFields.ApplicationJSON
+        static let ContentType: String = UdacityConstants.HTTPFields.ContentType
     }
     
     struct JSONKeys {
@@ -56,7 +57,7 @@ class Constants: LogInViewController {
     }
 }
 
-extension UdacityClient {
+class  UdacityConstants {
     
     struct URLConstants {
         static let BaseURL: String = "https://www.udacity.com/api/"
@@ -66,6 +67,9 @@ extension UdacityClient {
     struct Methods {
         static let Session = "session"
         static let UserData = "users/"
+    }
+    struct UserData {
+        static var UserSessionKey = ""
     }
     
     struct HTTPFields {

@@ -10,16 +10,16 @@ import UIKit
 import MapKit
 
 /**
-* This view controller demonstrates the objects involved in displaying pins on a map.
-*
-* The map is a MKMapView.
-* The pins are represented by MKPointAnnotation instances.
-*
-* The view controller conforms to the MKMapViewDelegate so that it can receive a method 
-* invocation when a pin annotation is tapped. It accomplishes this using two delegate 
-* methods: one to put a small "info" button on the right side of each pin, and one to
-* respond when the "info" button is tapped.
-*/
+ * This view controller demonstrates the objects involved in displaying pins on a map.
+ *
+ * The map is a MKMapView.
+ * The pins are represented by MKPointAnnotation instances.
+ *
+ * The view controller conforms to the MKMapViewDelegate so that it can receive a method
+ * invocation when a pin annotation is tapped. It accomplishes this using two delegate
+ * methods: one to put a small "info" button on the right side of each pin, and one to
+ * respond when the "info" button is tapped.
+ */
 
 class MapViewController: UIViewController, MKMapViewDelegate {
     
@@ -73,33 +73,27 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func LogOutButttonTouchUp() {
-        let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/session")!)
-        request.HTTPMethod = "DELETE"
-        var xsrfCookie: NSHTTPCookie? = nil
-        let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
-        for cookie in sharedCookieStorage.cookies! {
-            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
-        }
-        if let xsrfCookie = xsrfCookie {
-            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
-        }
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(request) { data, response, error in
-            if error != nil { // Handle error…
-                return
+        UdacityModel.sheredInstance.requestForDELETESession { (sucess , errorString) -> Void in
+            if sucess {
+                let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LogInViewController") as! LogInViewController
+                self.presentViewController(controller, animated: true, completion: nil)
+            } else {
+                self.presentError("There was an error with the loging out process")
             }
-            let newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5)) /* subset response data! */
-            print(NSString(data: newData, encoding: NSUTF8StringEncoding))
-            
-            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LogInViewController") as! LogInViewController
-            self.presentViewController(controller, animated: true, completion: nil)
         }
-        task.resume()
-        
     }
-
+    func presentError(alertString: String){
+        /* Set transaction for when shake animation ceases */
+        CATransaction.begin()
+        let ac = UIAlertController(title: "Error In Request", message: alertString, preferredStyle: .Alert)
+        ac.addAction(UIAlertAction(title: "Dismiss", style: .Default, handler: nil))
+        CATransaction.setCompletionBlock { () -> Void in
+            self.presentViewController(ac, animated: true, completion: nil)
+        }
+    }
+    
     // MARK: - MKMapViewDelegate
-
+    
     // Here we create a view with a "right callout accessory view". You might choose to look into other
     // decoration alternatives. Notice the similarity between this method and the cellForRowAtIndexPath
     // method in TableViewDataSource.
@@ -108,7 +102,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         let reuseId = "pin"
         
         var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
-
+        
         if pinView == nil {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.canShowCallout = true
@@ -121,7 +115,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         return pinView
     }
-
+    
     
     // This delegate method is implemented to respond to taps. It opens the system browser
     // to the URL specified in the annotationViews subtitle property.
@@ -133,14 +127,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             }
         }
     }
-//    func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-//        
-//        if control == annotationView.rightCalloutAccessoryView {
-//            let app = UIApplication.sharedApplication()
-//            app.openURL(NSURL(string: annotationView.annotation.subtitle))
-//        }
-//    }
-
+    //    func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+    //
+    //        if control == annotationView.rightCalloutAccessoryView {
+    //            let app = UIApplication.sharedApplication()
+    //            app.openURL(NSURL(string: annotationView.annotation.subtitle))
+    //        }
+    //    }
+    
     // MARK: - Sample Data
     
     // Some sample data. This is a dictionary that is more or less similar to the
