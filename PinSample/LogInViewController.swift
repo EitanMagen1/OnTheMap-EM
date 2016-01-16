@@ -53,8 +53,8 @@ class LogInViewController: UIViewController {
             }
                 showActivityIndicator()//starts the animation of the login indicator until we loged in!
         
-        UdacityModel.sheredInstance.requestForPOSTSession(jsonBody , completionHandler: {(sucess, errorType) -> Void in
-                    if sucess {
+        UdacityModel.sheredInstance.requestForPOSTSession(jsonBody , completionHandler: {(success, errorType) -> Void in
+                    if success {
                         dispatch_async(dispatch_get_main_queue(), {
                             self.passwordTextField.text = ""
                             self.showActivityIndicator()//flips the condition of the indictor , stops the animation once logged in

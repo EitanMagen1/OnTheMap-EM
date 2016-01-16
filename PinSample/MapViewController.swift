@@ -28,12 +28,30 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     // is set up as the map view's delegate.
     @IBOutlet weak var mapView: MKMapView!
     
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         parentViewController!.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .Plain, target: self, action: "LogOutButttonTouchUp")
+        parentViewController?.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "refreshTable"), UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addButtonTouchUp")]
+    }
+    func refreshTable() {
+        ParseModel.sheredInstance.GetingStudentLocations { (success, errorString) -> Void in
+            if success {
+                self.mapView.reloadInputViews()
+                self.fillMapWithStudentsLocation()
+            } else {
+                print(errorString)
+                self.presentError("There was an error loading student locations.")
+            }
+        }
+    }
+
+    func fillMapWithStudentsLocation() {
         // The "locations" array is an array of dictionary objects that are similar to the JSON
         // data that you can download from parse.
-        let locations = hardCodedLocationData()
+        //let locations = hardCodedLocationData()
+        
+        let locations = ParseModel.sheredInstance.AllstudentsDataJsonFormat
         
         // We will create an MKPointAnnotation for each dictionary in "locations". The
         // point annotations will be stored in this array, and then provided to the map view.
@@ -43,7 +61,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         // to create map annotations. This would be more stylish if the dictionaries were being
         // used to create custom structs. Perhaps StudentLocation structs.
         
-        for dictionary in locations {
+        
+    
+        for dictionary in locations! {
             
             // Notice that the float values are being used to create CLLocationDegree values.
             // This is a version of the Double type.
@@ -73,8 +93,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func LogOutButttonTouchUp() {
-        UdacityModel.sheredInstance.requestForDELETESession { (sucess , errorString) -> Void in
-            if sucess {
+        UdacityModel.sheredInstance.requestForDELETESession { (success , errorString) -> Void in
+            if success {
                 let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LogInViewController") as! LogInViewController
                 self.presentViewController(controller, animated: true, completion: nil)
             } else {

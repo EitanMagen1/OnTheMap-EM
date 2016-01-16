@@ -278,7 +278,7 @@
         <!--Info Posting View Controller-->
         <scene sceneID="haX-GR-izh">
             <objects>
-                <viewController storyboardIdentifier="InfoPostingViewController" id="RG1-sf-OEX" customClass="InfoPostingViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InfoPostingViewController" id="RG1-sf-OEX" customClass="InfoPostingViewController" customModule="OnTheMap_EM1" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fb1-Fo-3Nf"/>
                         <viewControllerLayoutGuide type="bottom" id="Unt-He-m4D"/>

@@ -26,12 +26,14 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
     var tapRecognizer: UITapGestureRecognizer? = nil
     var firstName: String?
     var lastName: String?
+    var uniqueKey : String?
     var mapString: String?
     var longitude: Double?
     var latitude: Double?
+    var userInfo :[String:AnyObject]?
     
     //MARK: Lifecycle functions
-   /*
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,7 +50,6 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
         
         //MARK: Other stuff
         getUserInfo()
-        getStudentLocation()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -74,7 +75,7 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func submitButtonTouchUp(sender: UIButton) {
-        if ParseClient.sharedInstance.getObjectID() != nil {
+        if ParseModel.sheredInstance.objectID != nil {
             updateStudent()
         }
         else {
@@ -89,10 +90,11 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
     //MARK: Methods to interact with clients
     
     func getUserInfo() {
-        UdacityClient.sharedInstance.requestForGETUserData { (userInfo, errorString) -> Void in
+        UdacityModel.sheredInstance.requestForGETUserData { (userInfo, errorString) -> Void in
             if let userInfo = userInfo as [String: String]? {
-                self.firstName = userInfo[UdacityClient.JSONKeys.FirstName]
-                self.lastName = userInfo[UdacityClient.JSONKeys.LastName]
+                self.firstName = userInfo[UdacityConstants.JSONKeys.FirstName]
+                self.lastName = userInfo[UdacityConstants.JSONKeys.LastName]
+                self.uniqueKey = userInfo[UdacityConstants.JSONKeys.Key]
             }
             else {
                 print(errorString)
@@ -101,35 +103,27 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    func getStudentLocation() {
-        ParseClient.sharedInstance.getStudentLocation { (success, errorString) -> Void in
-            if success {
-                print(ParseClient.sharedInstance.getObjectID()!)
-            } else {
-                print(errorString)
-            }
-        }
-    }
+    
     
     func addNewStudent() {
         var jsonBody = [String:AnyObject]()
-        if let firstName = firstName, lastName = lastName, mapString = mapString, mediaURL = urlTextField.text, latitude = latitude, longitude = longitude {
-            jsonBody[ParseClient.JSONKeys.UniqueKey] = UdacityClient.sharedInstance.getUserID()
-            jsonBody[ParseClient.JSONKeys.FirstName] = firstName
-            jsonBody[ParseClient.JSONKeys.LastName] = lastName
-            jsonBody[ParseClient.JSONKeys.MapString] = mapString
-            jsonBody[ParseClient.JSONKeys.MediaURL] = mediaURL
-            jsonBody[ParseClient.JSONKeys.Latitude] = latitude
-            jsonBody[ParseClient.JSONKeys.Longitude] = longitude
+        if let firstName = firstName, lastName = lastName, mapString = mapString, mediaURL = urlTextField.text, latitude = latitude, longitude = longitude , uniqueKey = uniqueKey {
+            jsonBody[ParseConstants.JSONKeys.UniqueKey] = uniqueKey
+            jsonBody[ParseConstants.JSONKeys.FirstName] = firstName
+            jsonBody[ParseConstants.JSONKeys.LastName] = lastName
+            jsonBody[ParseConstants.JSONKeys.MapString] = mapString
+            jsonBody[ParseConstants.JSONKeys.MediaURL] = mediaURL
+            jsonBody[ParseConstants.JSONKeys.Latitude] = latitude
+            jsonBody[ParseConstants.JSONKeys.Longitude] = longitude
             
-            ParseClient.sharedInstance.requestForPOSTParse(jsonBody) { (success, errorString) -> Void in
+            ParseModel.sheredInstance.POSTingAStudentLocation(jsonBody, completionHandler: { (success, errorType) -> Void in
                 if success {
                     self.completeSubmission()
                 } else {
-                    print(errorString)
+                    print(errorType)
                     self.presentError("Your changes could not be submitted due to a network error.")
                 }
-            }
+            })
         }
         else {
             print("Unable to post location due to missing JSON parameters.")
@@ -140,24 +134,23 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
     func updateStudent() {
         var jsonBody = [String:AnyObject]()
         if let mapString = mapString, mediaURL = urlTextField.text, latitude = latitude, longitude = longitude {
-            jsonBody[ParseClient.JSONKeys.MapString] = mapString
-            jsonBody[ParseClient.JSONKeys.MediaURL] = mediaURL
-            jsonBody[ParseClient.JSONKeys.Latitude] = latitude
-            jsonBody[ParseClient.JSONKeys.Longitude] = longitude
+            jsonBody[ParseConstants.JSONKeys.MapString] = mapString
+            jsonBody[ParseConstants.JSONKeys.MediaURL] = mediaURL
+            jsonBody[ParseConstants.JSONKeys.Latitude] = latitude
+            jsonBody[ParseConstants.JSONKeys.Longitude] = longitude
             
-            ParseClient.sharedInstance.requestForPUTParse(jsonBody) { (success, errorString) -> Void in
+            ParseModel.sheredInstance.POSTingAStudentLocation(jsonBody, completionHandler: { (success, errorType) -> Void in
                 if success {
                     self.completeSubmission()
                 } else {
-                    print(errorString)
+                    print(errorType)
                     self.presentError("Your changes could not be submitted due to a network error.")
                 }
-            }
+                
+            })
+            
         }
-        else {
-            print("Unable to post location due to missing JSON parameters.")
-            presentError("Please complete the form before submitting.")
-        }
+        
     }
     
     //MARK: Helper methods
@@ -165,12 +158,12 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
     func presentError(alertString: String){
         self.activityIndicator.stopAnimating()
         let ac = UIAlertController(title: "Error", message: alertString, preferredStyle: .Alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        ac.addAction(UIAlertAction(title: "Dismiss", style: .Default, handler: nil))
         self.presentViewController(ac, animated: true, completion: nil)
     }
     
     func completeSubmission() {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    */
+    
 }

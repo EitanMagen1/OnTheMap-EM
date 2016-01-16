@@ -14,7 +14,7 @@ class UdacityModel {
     
     
     //logging in to udacity
-    func requestForPOSTSession(jsonBody: [String:AnyObject], completionHandler:(sucess : Bool , errorType : String?)-> Void) -> Void {
+    func requestForPOSTSession(jsonBody: [String:AnyObject], completionHandler:(success : Bool , errorType : String?)-> Void) -> Void {
         
         let urlString = UdacityConstants.URLConstants.BaseURL + UdacityConstants.Methods.Session
         let url = NSURL(string: urlString)!
@@ -34,22 +34,22 @@ class UdacityModel {
             if error == nil {
                 /* GUARD: Is the "account" key in parsedResult? */
                 guard let accountStatus = result[UdacityConstants.JSONKeys.Account] as? [String : AnyObject] else {
-                    completionHandler(sucess: false, errorType: "No match on email/password combination.")
+                    completionHandler(success: false, errorType: "No match on email/password combination.")
                     return
                 }
                 guard let sessionKey = accountStatus[UdacityConstants.JSONKeys.Key] as? String else {
-                    completionHandler(sucess: false, errorType:  "No match on email/password combination.")
+                    completionHandler(success: false, errorType:  "No match on email/password combination.")
                     return
                 }
                 UdacityConstants.UserData.UserSessionKey = sessionKey
-                completionHandler(sucess: true, errorType: nil)
+                completionHandler(success: true, errorType: nil)
                 
             }else if error != nil{
                 if error?.code == 403 {
-                    completionHandler(sucess: false, errorType:  "No match on email/password combination.")
+                    completionHandler(success: false, errorType:  "No match on email/password combination.")
                     
                 }else{
-                    completionHandler(sucess: false, errorType:  "Network Error")
+                    completionHandler(success: false, errorType:  "Network Error")
                 }
             }
         }
