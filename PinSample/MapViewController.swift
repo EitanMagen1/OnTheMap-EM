@@ -34,6 +34,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         parentViewController!.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .Plain, target: self, action: "LogOutButttonTouchUp")
         parentViewController?.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "refreshTable"), UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addButtonTouchUp")]
     }
+    
+    func addButtonTouchUp() {
+        let controller = storyboard?.instantiateViewControllerWithIdentifier("InfoPostingViewController") as UIViewController!
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
+    
     func refreshTable() {
         ParseModel.sheredInstance.GetingStudentLocations { (success, errorString) -> Void in
             if success {

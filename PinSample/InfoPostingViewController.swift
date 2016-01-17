@@ -75,12 +75,9 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func submitButtonTouchUp(sender: UIButton) {
-        if ParseModel.sheredInstance.objectID != nil {
-            updateStudent()
-        }
-        else {
+       
             addNewStudent()
-        }
+        
     }
     
     @IBAction func cancelButtonTouchUp(sender: UIButton) {
@@ -107,7 +104,7 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
     
     func addNewStudent() {
         var jsonBody = [String:AnyObject]()
-        if let firstName = firstName, lastName = lastName, mapString = mapString, mediaURL = urlTextField.text, latitude = latitude, longitude = longitude , uniqueKey = uniqueKey {
+        if let uniqueKey = uniqueKey, firstName = firstName, lastName = lastName, mapString = mapString, mediaURL = urlTextField.text, latitude = latitude, longitude = longitude {
             jsonBody[ParseConstants.JSONKeys.UniqueKey] = uniqueKey
             jsonBody[ParseConstants.JSONKeys.FirstName] = firstName
             jsonBody[ParseConstants.JSONKeys.LastName] = lastName
@@ -126,32 +123,10 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
             })
         }
         else {
-            print("Unable to post location due to missing JSON parameters.")
             presentError("Please complete the form before submitting.")
         }
     }
     
-    func updateStudent() {
-        var jsonBody = [String:AnyObject]()
-        if let mapString = mapString, mediaURL = urlTextField.text, latitude = latitude, longitude = longitude {
-            jsonBody[ParseConstants.JSONKeys.MapString] = mapString
-            jsonBody[ParseConstants.JSONKeys.MediaURL] = mediaURL
-            jsonBody[ParseConstants.JSONKeys.Latitude] = latitude
-            jsonBody[ParseConstants.JSONKeys.Longitude] = longitude
-            
-            ParseModel.sheredInstance.POSTingAStudentLocation(jsonBody, completionHandler: { (success, errorType) -> Void in
-                if success {
-                    self.completeSubmission()
-                } else {
-                    print(errorType)
-                    self.presentError("Your changes could not be submitted due to a network error.")
-                }
-                
-            })
-            
-        }
-        
-    }
     
     //MARK: Helper methods
     

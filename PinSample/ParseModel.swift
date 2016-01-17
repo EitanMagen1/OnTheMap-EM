@@ -49,13 +49,13 @@ class ParseModel {
         request.addValue(ParseConstants.URLConstants.ApplicationID, forHTTPHeaderField: ParseConstants.HTTPFields.AppID)
         request.addValue(ParseConstants.URLConstants.RestAPIKey, forHTTPHeaderField: ParseConstants.HTTPFields.RestAPIKey)
         request.addValue( ParseConstants.HTTPFields.ApplicationJSON, forHTTPHeaderField: ParseConstants.HTTPFields.ContentType)
-        request.HTTPBody = "{\"uniqueKey\": \"1234\", \"firstName\": \"John\", \"lastName\": \"Doe\",\"mapString\": \"Mountain View, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.386052, \"longitude\": -122.083851}".dataUsingEncoding(NSUTF8StringEncoding)
+       // request.HTTPBody = "{\"uniqueKey\": \"1234\", \"firstName\": \"John\", \"lastName\": \"Doe\",\"mapString\": \"Mountain View, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.386052, \"longitude\": -122.083851}".dataUsingEncoding(NSUTF8StringEncoding)
         do {
             request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(jsonBody, options: .PrettyPrinted)
         }
         
         /* 4. Make the request */
-        SessionAndParseModel.sheredInstance.sessionAndParseTask(request, client: .Udacity) { (result, error) -> Void in
+        SessionAndParseModel.sheredInstance.sessionAndParseTask(request, client: .Parse) { (result, error) -> Void in
             if error == nil {
                 /* GUARD: Is the "account" key in parsedResult? */
                 guard let objectId = result[ParseConstants.JSONKeys.ObjectID] as? String? else {

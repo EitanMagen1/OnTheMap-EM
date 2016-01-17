@@ -106,6 +106,10 @@ class UdacityModel {
                     if let firstName = userDictionary[UdacityConstants.JSONKeys.FirstName] as? String {
                         userInfo[UdacityConstants.JSONKeys.FirstName] = firstName
                     }
+                    if let uniqueKey = userDictionary[UdacityConstants.JSONKeys.Key] as? String {
+                        userInfo[UdacityConstants.JSONKeys.Key] = uniqueKey
+                    }
+
                     completionHandler(userInfo: userInfo, errorString: nil)
                 } else {
                     completionHandler(userInfo: nil, errorString: "User data fail: reading response from Udacity")
