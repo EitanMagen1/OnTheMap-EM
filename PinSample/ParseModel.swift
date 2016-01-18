@@ -12,13 +12,15 @@ class ParseModel {
     
     static let sheredInstance = ParseModel()
     
-    var AllstudendsData = [StudentLocationData]()
     var AllstudentsDataJsonFormat :[[String : AnyObject]]?
     var objectID : String? = nil
     
     
     func GetingStudentLocations( completionHandeler : ( success: Bool, errorString: String?) ->Void)->Void {
-        let UrlString = ParseConstants.URLConstants.BaseURL
+       
+        let params = ["limit": 100, "order": "-updatedAt"]
+        let UrlString = ParseConstants.URLConstants.BaseURL + escapedParameters(params)
+
         let NSURLString = NSURL(string: UrlString)!
         let request = NSMutableURLRequest(URL: NSURLString)
         request.addValue(ParseConstants.URLConstants.ApplicationID, forHTTPHeaderField: ParseConstants.HTTPFields.AppID)
@@ -30,12 +32,13 @@ class ParseModel {
                     completionHandeler(success: false, errorString: "Failed to get Students information ")
                     return
                 }
-                self.AllstudendsData = StudentLocationData.studentLocationsFromResults(StudentData)
+                StudentLocationData.AllstudendsData = StudentLocationData.studentLocationsFromResults(StudentData)
                 self.AllstudentsDataJsonFormat = StudentData
                 completionHandeler(success: true, errorString: nil)
                 
             }else if let error = error {
                 completionHandeler(success: false, errorString: error.description)
+                error_handeling.sheredInstance.presentError(error.description)
             }
         }
         return
@@ -49,7 +52,7 @@ class ParseModel {
         request.addValue(ParseConstants.URLConstants.ApplicationID, forHTTPHeaderField: ParseConstants.HTTPFields.AppID)
         request.addValue(ParseConstants.URLConstants.RestAPIKey, forHTTPHeaderField: ParseConstants.HTTPFields.RestAPIKey)
         request.addValue( ParseConstants.HTTPFields.ApplicationJSON, forHTTPHeaderField: ParseConstants.HTTPFields.ContentType)
-       // request.HTTPBody = "{\"uniqueKey\": \"1234\", \"firstName\": \"John\", \"lastName\": \"Doe\",\"mapString\": \"Mountain View, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.386052, \"longitude\": -122.083851}".dataUsingEncoding(NSUTF8StringEncoding)
+       
         do {
             request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(jsonBody, options: .PrettyPrinted)
         }
@@ -71,7 +74,26 @@ class ParseModel {
             return
         }
     }
-    
+    func escapedParameters(parameters: [String : AnyObject]) -> String {
+        
+        var urlVars = [String]()
+        
+        for (key, value) in parameters {
+            
+            /* Make sure that it is a string value */
+            let stringValue = "\(value)"
+            
+            /* Escape it */
+            let escapedValue = stringValue.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+            
+            /* Append it */
+            urlVars += [key + "=" + "\(escapedValue!)"]
+            
+        }
+        
+        return (!urlVars.isEmpty ? "?" : "") + urlVars.joinWithSeparator("&")
+    }
+
     
     // optional to Querying for a StudentLocation
     // optional PUTing (Updating) a StudentLocation

@@ -32,8 +32,8 @@ class LogInViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        emailTextField.text = "eitan.magen1@gmail.com"
-        passwordTextField.text = "Password2345"
+        emailTextField.text = ""
+        passwordTextField.text = ""
         activityIndicator.hidden = true
     }
     

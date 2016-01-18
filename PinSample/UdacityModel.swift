@@ -12,8 +12,8 @@ class UdacityModel {
     
     static let sheredInstance = UdacityModel()
     
-    
     //logging in to udacity
+    
     func requestForPOSTSession(jsonBody: [String:AnyObject], completionHandler:(success : Bool , errorType : String?)-> Void) -> Void {
         
         let urlString = UdacityConstants.URLConstants.BaseURL + UdacityConstants.Methods.Session

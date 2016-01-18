@@ -70,7 +70,7 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
         if let requestUrl = NSURL(string: urlTextField.text!) {
             UIApplication.sharedApplication().openURL(requestUrl)
         } else {
-            presentError("Please enter a valid URL.")
+            error_handeling.sheredInstance.presentError("Please enter a valid URL.")
         }
     }
     
@@ -95,7 +95,7 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
             }
             else {
                 print(errorString)
-                self.presentError("Could not find user's name.")
+                error_handeling.sheredInstance.presentError("Could not find user's name.")
             }
         }
     }
@@ -117,25 +117,19 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
                 if success {
                     self.completeSubmission()
                 } else {
-                    print(errorType)
-                    self.presentError("Your changes could not be submitted due to a network error.")
+                    error_handeling.sheredInstance.presentError("Your changes could not be submitted due to a network error.")
                 }
             })
         }
         else {
-            presentError("Please complete the form before submitting.")
+            error_handeling.sheredInstance.presentError("Please complete the form before submitting.")
         }
     }
     
     
     //MARK: Helper methods
     
-    func presentError(alertString: String){
-        self.activityIndicator.stopAnimating()
-        let ac = UIAlertController(title: "Error", message: alertString, preferredStyle: .Alert)
-        ac.addAction(UIAlertAction(title: "Dismiss", style: .Default, handler: nil))
-        self.presentViewController(ac, animated: true, completion: nil)
-    }
+   
     
     func completeSubmission() {
         self.dismissViewControllerAnimated(true, completion: nil)

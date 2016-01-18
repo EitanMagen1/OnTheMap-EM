@@ -10,6 +10,7 @@ import Foundation
 
 struct StudentLocationData {
     
+    
     //MARK: Properties
     
     var firstName = ""
@@ -50,5 +51,7 @@ struct StudentLocationData {
         
         return studentLocations
     }
+    static var AllstudendsData = [StudentLocationData]()
     
+
 }

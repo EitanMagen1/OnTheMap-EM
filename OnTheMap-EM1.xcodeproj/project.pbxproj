@@ -10,6 +10,7 @@
 		460408171C49260C0045BCFB /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460408161C49260C0045BCFB /* TableViewController.swift */; };
 		4604081A1C4ABAD10045BCFB /* URLTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460408191C4ABAD10045BCFB /* URLTextFieldDelegate.swift */; };
 		4604081C1C4ABAFB0045BCFB /* SearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4604081B1C4ABAFB0045BCFB /* SearchBarDelegate.swift */; };
+		4604085C1C4D20910045BCFB /* error handeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4604085B1C4D20910045BCFB /* error handeling.swift */; };
 		46DB92021C4797EB002DF312 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DB92011C4797EB002DF312 /* Constants.swift */; };
 		46DB92041C47A09E002DF312 /* StudentLocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DB92031C47A09E002DF312 /* StudentLocationData.swift */; };
 		46DB92081C47A7B4002DF312 /* ParseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DB92071C47A7B4002DF312 /* ParseModel.swift */; };
@@ -39,6 +40,7 @@
 		460408161C49260C0045BCFB /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		460408191C4ABAD10045BCFB /* URLTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLTextFieldDelegate.swift; sourceTree = "<group>"; };
 		4604081B1C4ABAFB0045BCFB /* SearchBarDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarDelegate.swift; sourceTree = "<group>"; };
+		4604085B1C4D20910045BCFB /* error handeling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "error handeling.swift"; sourceTree = "<group>"; };
 		46DB92011C4797EB002DF312 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		46DB92031C47A09E002DF312 /* StudentLocationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocationData.swift; sourceTree = "<group>"; };
 		46DB92071C47A7B4002DF312 /* ParseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseModel.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			children = (
 				460408191C4ABAD10045BCFB /* URLTextFieldDelegate.swift */,
 				4604081B1C4ABAFB0045BCFB /* SearchBarDelegate.swift */,
+				4604085B1C4D20910045BCFB /* error handeling.swift */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				4604081A1C4ABAD10045BCFB /* URLTextFieldDelegate.swift in Sources */,
 				46DB920E1C47B051002DF312 /* SessionAndParseModel.swift in Sources */,
 				46DCE19D1C3E9F2C00C71398 /* LogInViewController.swift in Sources */,
+				4604085C1C4D20910045BCFB /* error handeling.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

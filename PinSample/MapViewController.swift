@@ -47,7 +47,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 self.fillMapWithStudentsLocation()
             } else {
                 print(errorString)
-                self.presentError("There was an error loading student locations.")
+                error_handeling.sheredInstance.presentError("There was an error loading student locations.")
             }
         }
     }
@@ -104,17 +104,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LogInViewController") as! LogInViewController
                 self.presentViewController(controller, animated: true, completion: nil)
             } else {
-                self.presentError("There was an error with the loging out process")
+                error_handeling.sheredInstance.presentError("There was an error with the loging out process")
             }
-        }
-    }
-    func presentError(alertString: String){
-        /* Set transaction for when shake animation ceases */
-        CATransaction.begin()
-        let ac = UIAlertController(title: "Error In Request", message: alertString, preferredStyle: .Alert)
-        ac.addAction(UIAlertAction(title: "Dismiss", style: .Default, handler: nil))
-        CATransaction.setCompletionBlock { () -> Void in
-            self.presentViewController(ac, animated: true, completion: nil)
         }
     }
     
@@ -153,77 +144,5 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             }
         }
     }
-    //    func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-    //
-    //        if control == annotationView.rightCalloutAccessoryView {
-    //            let app = UIApplication.sharedApplication()
-    //            app.openURL(NSURL(string: annotationView.annotation.subtitle))
-    //        }
-    //    }
     
-    // MARK: - Sample Data
-    
-    // Some sample data. This is a dictionary that is more or less similar to the
-    // JSON data that you will download from Parse.
-    
-    func hardCodedLocationData() -> [[String : AnyObject]] {
-        return  [
-            [
-                "createdAt" : "2015-02-24T22:27:14.456Z",
-                "firstName" : "Jessica",
-                "lastName" : "Uelmen",
-                "latitude" : 28.1461248,
-                "longitude" : -82.75676799999999,
-                "mapString" : "Tarpon Springs, FL",
-                "mediaURL" : "www.linkedin.com/in/jessicauelmen/en",
-                "objectId" : "kj18GEaWD8",
-                "uniqueKey" : 872458750,
-                "updatedAt" : "2015-03-09T22:07:09.593Z"
-            ], [
-                "createdAt" : "2015-02-24T22:35:30.639Z",
-                "firstName" : "Gabrielle",
-                "lastName" : "Miller-Messner",
-                "latitude" : 35.1740471,
-                "longitude" : -79.3922539,
-                "mapString" : "Southern Pines, NC",
-                "mediaURL" : "http://www.linkedin.com/pub/gabrielle-miller-messner/11/557/60/en",
-                "objectId" : "8ZEuHF5uX8",
-                "uniqueKey" : 2256298598,
-                "updatedAt" : "2015-03-11T03:23:49.582Z"
-            ], [
-                "createdAt" : "2015-02-24T22:30:54.442Z",
-                "firstName" : "Jason",
-                "lastName" : "Schatz",
-                "latitude" : 37.7617,
-                "longitude" : -122.4216,
-                "mapString" : "18th and Valencia, San Francisco, CA",
-                "mediaURL" : "http://en.wikipedia.org/wiki/Swift_%28programming_language%29",
-                "objectId" : "hiz0vOTmrL",
-                "uniqueKey" : 2362758535,
-                "updatedAt" : "2015-03-10T17:20:31.828Z"
-            ], [
-                "createdAt" : "2015-03-11T02:48:18.321Z",
-                "firstName" : "Jarrod",
-                "lastName" : "Parkes",
-                "latitude" : 34.73037,
-                "longitude" : -86.58611000000001,
-                "mapString" : "Huntsville, Alabama",
-                "mediaURL" : "https://linkedin.com/in/jarrodparkes",
-                "objectId" : "CDHfAy8sdp",
-                "uniqueKey" : 996618664,
-                "updatedAt" : "2015-03-13T03:37:58.389Z"
-            ], [
-                "createdAt" : "2016-01-03T02:48:18.321Z",
-                "firstName" : "Lauren",
-                "lastName" : "Magen",
-                "latitude" : 32.066158,
-                "longitude" : 34.777819,
-                "mapString" : "Tel Aviv, Israel",
-                "mediaURL" : "https://www.ynet.com",
-                "objectId" : "CDHfAy8sda",
-                "uniqueKey" : 996618661,
-                "updatedAt" : "2015-03-13T03:37:58.389Z"
-            ]
-        ]
-    }
-}
+  }
