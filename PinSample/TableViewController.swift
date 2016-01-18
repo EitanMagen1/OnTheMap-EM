@@ -27,8 +27,7 @@ class TableViewController: UITableViewController {
                 self.parentViewController?.dismissViewControllerAnimated(true, completion: nil)
             }
             else {
-                print(errorString)
-                error_handeling.sheredInstance.presentError("There was an error logging out. Please try again.")
+                error_handeling.sheredInstance.presentError("There was an error logging out. Please try again.\(errorString)")
             }
         }
     }
@@ -44,8 +43,7 @@ class TableViewController: UITableViewController {
                 self.tableView.reloadData()
                 self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
             } else {
-                print(errorString)
-                error_handeling.sheredInstance.presentError("There was an error loading student locations.")
+                error_handeling.sheredInstance.presentError("There was an error loading student locations.\(errorString)")
             }
         }
     }
@@ -75,7 +73,6 @@ class TableViewController: UITableViewController {
         if let requestUrl = NSURL(string: studentLocation.mediaURL) {
             UIApplication.sharedApplication().openURL(requestUrl)
         } else {
-            print("Error opening url: " + studentLocation.mediaURL)
             error_handeling.sheredInstance.presentError("There was an error opening url: \(studentLocation.mediaURL)")
         }
     }

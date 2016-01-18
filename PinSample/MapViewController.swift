@@ -46,8 +46,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 self.mapView.reloadInputViews()
                 self.fillMapWithStudentsLocation()
             } else {
-                print(errorString)
-                error_handeling.sheredInstance.presentError("There was an error loading student locations.")
+                error_handeling.sheredInstance.presentError("There was an error loading student locations.\(errorString)")
             }
         }
     }
@@ -101,9 +100,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func LogOutButttonTouchUp() {
         UdacityModel.sheredInstance.requestForDELETESession { (success , errorString) -> Void in
             if success {
-                let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LogInViewController") as! LogInViewController
-                self.presentViewController(controller, animated: true, completion: nil)
-            } else {
+                self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                    
+                    print("logOut")
+
+                })
+                            } else {
                 error_handeling.sheredInstance.presentError("There was an error with the loging out process")
             }
         }

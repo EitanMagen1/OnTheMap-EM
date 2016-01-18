@@ -94,8 +94,7 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
                 self.uniqueKey = userInfo[UdacityConstants.JSONKeys.Key]
             }
             else {
-                print(errorString)
-                error_handeling.sheredInstance.presentError("Could not find user's name.")
+                error_handeling.sheredInstance.presentError("Could not find user's name.\(errorString)")
             }
         }
     }

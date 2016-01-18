@@ -26,7 +26,7 @@ class LogInViewController: UIViewController {
         if let requestUrl = NSURL(string: "https://www.udacity.com/account/auth#!/signin") {
         UIApplication.sharedApplication().openURL(requestUrl)
         } else {
-            print("Error opening url: " + "https://www.udacity.com/account/auth#!/signin")
+            error_handeling.sheredInstance.presentError("Error opening url: " + "https://www.udacity.com/account/auth#!/signin")
         }
     }
     
