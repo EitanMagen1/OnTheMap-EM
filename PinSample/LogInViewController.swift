@@ -26,7 +26,7 @@ class LogInViewController: UIViewController {
         if let requestUrl = NSURL(string: "https://www.udacity.com/account/auth#!/signin") {
         UIApplication.sharedApplication().openURL(requestUrl)
         } else {
-            error_handeling.sheredInstance.presentError("Error opening url: " + "https://www.udacity.com/account/auth#!/signin")
+            presentError("Error opening url: " + "https://www.udacity.com/account/auth#!/signin")
         }
     }
     
@@ -79,7 +79,7 @@ class LogInViewController: UIViewController {
         }
     }
     
-    func presentError(alertString: String){
+     override func presentError(alertString: String){
         /* Set transaction for when shake animation ceases */
         CATransaction.begin()
         let ac = UIAlertController(title: "Error In Request", message: alertString, preferredStyle: .Alert)

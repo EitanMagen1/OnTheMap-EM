@@ -33,6 +33,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         parentViewController!.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .Plain, target: self, action: "LogOutButttonTouchUp")
         parentViewController?.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "refreshTable"), UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addButtonTouchUp")]
+        refreshTable()
     }
     
     func addButtonTouchUp() {
@@ -46,7 +47,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 self.mapView.reloadInputViews()
                 self.fillMapWithStudentsLocation()
             } else {
-                error_handeling.sheredInstance.presentError("There was an error loading student locations.\(errorString)")
+                self.presentError("There was an error loading student locations.\(errorString)")
             }
         }
     }
@@ -101,12 +102,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         UdacityModel.sheredInstance.requestForDELETESession { (success , errorString) -> Void in
             if success {
                 self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                    
-                    print("logOut")
-
                 })
                             } else {
-                error_handeling.sheredInstance.presentError("There was an error with the loging out process")
+                self.presentError("There was an error with the loging out process")
             }
         }
     }

@@ -70,7 +70,7 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
         if let requestUrl = NSURL(string: urlTextField.text!) {
             UIApplication.sharedApplication().openURL(requestUrl)
         } else {
-            error_handeling.sheredInstance.presentError("Please enter a valid URL.")
+            self.presentError("Please enter a valid URL.")
         }
     }
     
@@ -94,7 +94,7 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
                 self.uniqueKey = userInfo[UdacityConstants.JSONKeys.Key]
             }
             else {
-                error_handeling.sheredInstance.presentError("Could not find user's name.\(errorString)")
+                self.presentError("Could not find user's name.\(errorString)")
             }
         }
     }
@@ -116,12 +116,12 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
                 if success {
                     self.completeSubmission()
                 } else {
-                    error_handeling.sheredInstance.presentError("Your changes could not be submitted due to a network error.")
+                   self.presentError("Your changes could not be submitted due to a network error.")
                 }
             })
         }
         else {
-            error_handeling.sheredInstance.presentError("Please complete the form before submitting.")
+            self.presentError("Please complete the form before submitting.")
         }
     }
     

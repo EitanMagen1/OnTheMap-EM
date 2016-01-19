@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ParseModel {
+class ParseModel  {
     
     static let sheredInstance = ParseModel()
     
@@ -29,7 +29,7 @@ class ParseModel {
         SessionAndParseModel.sheredInstance.sessionAndParseTask(request, client: .Parse ) { (result, error) -> Void in
             if   error == nil {
                 guard let StudentData = result[ParseConstants.JSONKeys.Results] as? [[String : AnyObject]]! else {
-                    completionHandeler(success: false, errorString: "Failed to get Students information ")
+                    completionHandeler(success: false, errorString: "Failed to get Students information \(error?.description)")
                     return
                 }
                 StudentLocationData.AllstudendsData = StudentLocationData.studentLocationsFromResults(StudentData)
@@ -38,7 +38,6 @@ class ParseModel {
                 
             }else if let error = error {
                 completionHandeler(success: false, errorString: error.description)
-                error_handeling.sheredInstance.presentError(error.description)
             }
         }
         return

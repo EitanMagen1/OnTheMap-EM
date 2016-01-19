@@ -32,28 +32,26 @@ class SessionAndParseModel {
             
             /* GUARD: Was there an error? */
             guard (error == nil) else {
-                error_handeling.sheredInstance.presentError("There was an error with your request: \(error)")
-
+                print("There was an error with your request: \(error)")
                 return
             }
             
             /* GUARD: Did we get a successful 2XX response? */
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
                 if let response = response as? NSHTTPURLResponse {
-                    error_handeling.sheredInstance.presentError("Your request returned an invalid response! Status code: \(response.statusCode)!")
-
+                    print("Your request returned an invalid response! Status code: \(response.statusCode)!")
                     completionHandler(result: nil, error: NSError(domain: "sessionAndParseTask", code: response.statusCode, userInfo: [NSLocalizedDescriptionKey:"Status code: \(response.statusCode)"]))
                 } else if let response = response {
-                    error_handeling.sheredInstance.presentError("Your request returned an invalid response! Response: \(response)!")
+                    print("Your request returned an invalid response! Response: \(response)!")                    
                 } else {
-                    error_handeling.sheredInstance.presentError("Your request returned an invalid response!")
+                    print("Your request returned an invalid response!")
                 }
                 return
             }
             
             /* GUARD: Was there any data returned? */
             guard var data = data else {
-                error_handeling.sheredInstance.presentError("No data was returned by the request!")
+                print("No data was returned by the request!")
                 return
             }
             
@@ -67,8 +65,7 @@ class SessionAndParseModel {
                     parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
                 } catch {
                     parsedResult = nil
-                    error_handeling.sheredInstance.presentError("Could not parse JSON")
-
+                    print("Could not parse JSON")
                 }
                 completionHandler(result: parsedResult, error: nil) // insert the data to the completion handeler
             })

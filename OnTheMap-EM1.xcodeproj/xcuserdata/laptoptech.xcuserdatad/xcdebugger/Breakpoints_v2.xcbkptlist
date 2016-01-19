@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PinSample/MapViewController.swift"
-            timestampString = "474829153.35113"
+            timestampString = "474878583.679204"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "fillMapWithStudentsLocation()"
             landmarkType = "5">
          </BreakpointContent>
