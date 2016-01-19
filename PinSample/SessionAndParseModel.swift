@@ -33,6 +33,7 @@ class SessionAndParseModel {
             /* GUARD: Was there an error? */
             guard (error == nil) else {
                 print("There was an error with your request: \(error)")
+                completionHandler(result: false, error: error)
                 return
             }
             
@@ -40,6 +41,7 @@ class SessionAndParseModel {
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
                 if let response = response as? NSHTTPURLResponse {
                     print("Your request returned an invalid response! Status code: \(response.statusCode)!")
+                    
                     completionHandler(result: nil, error: NSError(domain: "sessionAndParseTask", code: response.statusCode, userInfo: [NSLocalizedDescriptionKey:"Status code: \(response.statusCode)"]))
                 } else if let response = response {
                     print("Your request returned an invalid response! Response: \(response)!")                    

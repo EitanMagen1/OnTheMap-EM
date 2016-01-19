@@ -9,8 +9,6 @@
 import UIKit
 
 extension UIViewController{
-    // class error_handeling : UIViewController {
-    // static let sheredInstance = error_handeling()
     func presentError(alertString: String){
         let ac = UIAlertController(title: "Error", message: alertString, preferredStyle: .Alert)
         ac.addAction(UIAlertAction(title: "Dismiss", style: .Default, handler: nil))

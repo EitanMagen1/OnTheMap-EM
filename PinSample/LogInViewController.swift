@@ -60,9 +60,12 @@ class LogInViewController: UIViewController {
                             self.showActivityIndicator()//flips the condition of the indictor , stops the animation once logged in
                             self.performSegueWithIdentifier("NavigationSague", sender: self)
                         })
-                    } else {
-                        self.presentError(errorType!)
-                        self.activityIndicator.hidden = true
+                    } else if errorType != nil {
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.showActivityIndicator()//flips the condition of the indictor , stops the animation once logged in
+                            self.presentError(errorType!)
+                        })
+                        
                     }
 
                 })
@@ -75,12 +78,15 @@ class LogInViewController: UIViewController {
         } else {
             activityIndicator.stopAnimating()
             activityIndicator.hidden = true
+            activityIndicator.hidesWhenStopped = true
+
 
         }
     }
     
      override func presentError(alertString: String){
         /* Set transaction for when shake animation ceases */
+        showActivityIndicator()
         CATransaction.begin()
         let ac = UIAlertController(title: "Error In Request", message: alertString, preferredStyle: .Alert)
         ac.addAction(UIAlertAction(title: "Dismiss", style: .Default, handler: nil))

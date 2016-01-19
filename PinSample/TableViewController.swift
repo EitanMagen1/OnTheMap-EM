@@ -42,7 +42,7 @@ class TableViewController: UITableViewController {
             if success {
                 self.tableView.reloadData()
                 self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
-            } else {
+            } else if errorString != nil {
                self.presentError("There was an error loading student locations.\(errorString)")
             }
         }
