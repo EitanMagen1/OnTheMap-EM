@@ -9,7 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 import FBSDKCoreKit
-class LogInViewController: UIViewController  {
+class LogInViewController: UIViewController ,FBSDKLoginButtonDelegate {
 
    var appDelegate : AppDelegate!
     
@@ -24,6 +24,57 @@ class LogInViewController: UIViewController  {
     @IBOutlet weak var facebookauth: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        
+    }
+
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        print("User Logged In")
+        
+        if ((error) != nil)
+        {
+            // Process error
+        }
+        else if result.isCancelled {
+            // Handle cancellations
+        }
+        else {
+            // If you ask for multiple permissions at once, you
+            // should check if specific permissions missing
+            if result.grantedPermissions.contains("email")
+            {
+                // Do work
+            }
+        }
+    }
+    
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        print("User Logged Out")
+    }
+    
+    func returnUserData() {
+        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
+        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
+            
+            if ((error) != nil)
+            {
+                // Process error
+                print("Error: \(error)")
+            }
+            else
+            {
+                print("fetched user: \(result)")
+                let userName : NSString = result.valueForKey("name") as! NSString
+                print("User Name is: \(userName)")
+                let userEmail : NSString = result.valueForKey("email") as! NSString
+                print("User Email is: \(userEmail)")
+            }
+        })
+    }
+    
     @IBAction func signUpButtonTouchUp(sender: UIButton) {
         if let requestUrl = NSURL(string: "https://www.udacity.com/account/auth#!/signin") {
         UIApplication.sharedApplication().openURL(requestUrl)
@@ -33,39 +84,28 @@ class LogInViewController: UIViewController  {
     }
     
     @IBAction func loginAuthWithFacebook(sender: AnyObject) {
-        logInText.text = "LogIn to Udacity with Facebook"
-        let token = FBSDKAccessToken.currentAccessToken()
-        
+        if (FBSDKAccessToken.currentAccessToken() != nil)
+        {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.showActivityIndicator()//flips the condition of the indictor , stops the animation once logged in
+                self.performSegueWithIdentifier("NavigationSague", sender: self)
+            })
+        }
+        else
+        {
             let loginView : FBSDKLoginButton = FBSDKLoginButton()
             self.view.addSubview(loginView)
             loginView.center = self.view.center
             loginView.readPermissions = ["public_profile", "email", "user_friends"]
-        showActivityIndicator()//starts the animation of the login indicator until we loged in!
-        var userInfo = [String:String]()
-        userInfo[UdacityConstants.JSONKeys.access_token] = "\(token)"
-        let jsonBody = [UdacityConstants.JSONKeys.facebook_mobile: userInfo] //build the json body a array of dictianary
-        UdacityModel.sheredInstance.requestForPOSTSession(jsonBody , completionHandler: {(success, errorType) -> Void in
-            if success {
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.passwordTextField.text = ""
-                    self.showActivityIndicator()//flips the condition of the indictor , stops the animation once logged in
-                    self.performSegueWithIdentifier("NavigationSague", sender: self)
-                })
-            } else if errorType != nil {
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.showActivityIndicator()//flips the condition of the indictor , stops the animation once logged in
-                    self.presentError(errorType!)
-                })
-                
-            }
-            
-        })
+            loginView.delegate = self
+        }
 
+      
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        facebookauth.hidden = true
+        //facebookauth.hidden = true
         emailTextField.text = ""
         passwordTextField.text = ""
         activityIndicator.hidden = true
