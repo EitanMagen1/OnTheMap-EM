@@ -76,7 +76,7 @@
                                     <constraint firstAttribute="height" constant="50" id="965-aP-VvA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Login">
+                                <state key="normal" title="Login with Udacity acount">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -127,9 +127,24 @@
                                     <action selector="signUpButtonTouchUp:" destination="Zne-eU-VaE" eventType="touchUpInside" id="rFy-nZ-0KJ"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="q7c-Ib-Puo">
+                            <activityIndicatorView opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="q7c-Ib-Puo">
                                 <rect key="frame" x="290" y="480" width="20" height="20"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwL-CL-ubu">
+                                <rect key="frame" x="20" y="530" width="560" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="4CN-ng-fM0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <state key="normal" title="Login With Facebook">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logInButton:" destination="Zne-eU-VaE" eventType="touchUpInside" id="CNF-mc-LKP"/>
+                                    <action selector="loginAuthWithFacebook:" destination="Zne-eU-VaE" eventType="touchUpInside" id="UjF-UW-e6H"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -146,6 +161,7 @@
                             <constraint firstItem="8Fy-i8-lOS" firstAttribute="top" secondItem="jZ9-fA-XBf" secondAttribute="bottom" constant="8" id="SEk-vT-XLr"/>
                             <constraint firstItem="686-9v-mUr" firstAttribute="centerX" secondItem="sEj-tB-eSE" secondAttribute="centerX" id="Siu-1n-zzg"/>
                             <constraint firstItem="ybX-da-6d9" firstAttribute="leading" secondItem="sEj-tB-eSE" secondAttribute="leadingMargin" id="TKD-NB-ReX"/>
+                            <constraint firstItem="ZcV-6t-nxS" firstAttribute="top" secondItem="gwL-CL-ubu" secondAttribute="bottom" constant="20" id="TdN-eD-Knc"/>
                             <constraint firstItem="wBd-o9-5kI" firstAttribute="top" secondItem="ybX-da-6d9" secondAttribute="bottom" constant="8" id="ZM8-ls-Kzo"/>
                             <constraint firstItem="8Fy-i8-lOS" firstAttribute="trailing" secondItem="sEj-tB-eSE" secondAttribute="trailingMargin" id="ZuU-ks-t1v"/>
                             <constraint firstItem="8Fy-i8-lOS" firstAttribute="trailing" secondItem="sEj-tB-eSE" secondAttribute="trailingMargin" id="b8T-2X-1Ey"/>
@@ -153,7 +169,10 @@
                             <constraint firstItem="wBd-o9-5kI" firstAttribute="leading" secondItem="sEj-tB-eSE" secondAttribute="leadingMargin" id="bS4-N1-Ams"/>
                             <constraint firstItem="POw-zW-dvL" firstAttribute="centerX" secondItem="sEj-tB-eSE" secondAttribute="centerX" id="cUr-GE-6Tp"/>
                             <constraint firstItem="POw-zW-dvL" firstAttribute="leading" secondItem="sEj-tB-eSE" secondAttribute="leadingMargin" id="dTh-gY-pxA"/>
+                            <constraint firstItem="gwL-CL-ubu" firstAttribute="top" secondItem="q7c-Ib-Puo" secondAttribute="bottom" constant="30" id="dih-kr-RXx"/>
                             <constraint firstItem="POw-zW-dvL" firstAttribute="top" secondItem="8Fy-i8-lOS" secondAttribute="bottom" constant="8" id="fm0-Sc-tJZ"/>
+                            <constraint firstItem="gwL-CL-ubu" firstAttribute="leading" secondItem="sEj-tB-eSE" secondAttribute="leadingMargin" id="fxg-SS-Z3X"/>
+                            <constraint firstItem="gwL-CL-ubu" firstAttribute="trailing" secondItem="sEj-tB-eSE" secondAttribute="trailingMargin" id="gKv-t1-VXd"/>
                             <constraint firstItem="9Rj-0n-I4g" firstAttribute="trailing" secondItem="sEj-tB-eSE" secondAttribute="trailingMargin" id="iGG-mX-3oH"/>
                             <constraint firstItem="POw-zW-dvL" firstAttribute="trailing" secondItem="sEj-tB-eSE" secondAttribute="trailingMargin" id="l5m-VL-Fp6"/>
                             <constraint firstItem="POw-zW-dvL" firstAttribute="leading" secondItem="sEj-tB-eSE" secondAttribute="leadingMargin" id="pqZ-Yq-1il"/>
@@ -167,6 +186,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="q7c-Ib-Puo" id="b7t-74-yzg"/>
                         <outlet property="emailTextField" destination="8Fy-i8-lOS" id="RKh-qA-4Ra"/>
+                        <outlet property="facebookauth" destination="gwL-CL-ubu" id="aOo-LK-4Gd"/>
                         <outlet property="logInText" destination="jZ9-fA-XBf" id="mzo-4z-kXl"/>
                         <outlet property="loginButton" destination="ybX-da-6d9" id="ld7-hs-1jp"/>
                         <outlet property="mainView" destination="sEj-tB-eSE" id="ohm-JF-z1x"/>

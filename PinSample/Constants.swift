@@ -87,7 +87,10 @@ class  UdacityConstants {
         static let Udacity = "udacity" //httpbody outer
         static let Username = "username"
         static let Password = "password"
+        static let facebook_mobile = "facebook_mobile"
+        static let access_token = "access_token"
         
+
         static let Session = "session" //outer dict; also used in DELETE
         static let SessionID = "id" //also used in DELETE
         static let Expiration = "expiration" //also used in DELETE

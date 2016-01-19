@@ -116,7 +116,9 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
                 if success {
                     self.completeSubmission()
                 } else {
-                   self.presentError("Your changes could not be submitted due to a network error.")
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.presentError("Your changes could not be submitted due to a network error.")
+                    })
                 }
             })
         }
