@@ -99,6 +99,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func LogOutButttonTouchUp() {
+        
+
         UdacityModel.sheredInstance.requestForDELETESession { (success , errorString) -> Void in
             if success {
                 self.dismissViewControllerAnimated(true, completion: { () -> Void in

@@ -11,7 +11,8 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 class LogInViewController: UIViewController ,FBSDKLoginButtonDelegate {
 
-   var appDelegate : AppDelegate!
+    var appDelegate : AppDelegate!
+    static let sheredInstance = LogInViewController()
     
     var session: NSURLSession!
     
@@ -28,7 +29,18 @@ class LogInViewController: UIViewController ,FBSDKLoginButtonDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        
+        if (FBSDKAccessToken.currentAccessToken() != nil)
+        {
+            
+        }
+        else
+        {
+            let loginView : FBSDKLoginButton = FBSDKLoginButton()
+            self.view.addSubview(loginView)
+            loginView.center = self.view.center
+            loginView.readPermissions = ["public_profile", "email", "user_friends"]
+            loginView.delegate = self
+        }
     }
 
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
@@ -84,22 +96,10 @@ class LogInViewController: UIViewController ,FBSDKLoginButtonDelegate {
     }
     
     @IBAction func loginAuthWithFacebook(sender: AnyObject) {
-        if (FBSDKAccessToken.currentAccessToken() != nil)
-        {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.showActivityIndicator()//flips the condition of the indictor , stops the animation once logged in
-                self.performSegueWithIdentifier("NavigationSague", sender: self)
-            })
-        }
-        else
-        {
-            let loginView : FBSDKLoginButton = FBSDKLoginButton()
-            self.view.addSubview(loginView)
-            loginView.center = self.view.center
-            loginView.readPermissions = ["public_profile", "email", "user_friends"]
-            loginView.delegate = self
-        }
-
+        dispatch_async(dispatch_get_main_queue(), {
+            self.showActivityIndicator()//flips the condition of the indictor , stops the animation once logged in
+            self.performSegueWithIdentifier("NavigationSague", sender: self)
+        })
       
     }
     
