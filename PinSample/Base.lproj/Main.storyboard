@@ -130,21 +130,16 @@
                             <activityIndicatorView opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="q7c-Ib-Puo">
                                 <rect key="frame" x="290" y="480" width="20" height="20"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwL-CL-ubu">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eJj-iF-P27" customClass="FBSDKLoginButton">
                                 <rect key="frame" x="20" y="530" width="560" height="50"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="4CN-ng-fM0"/>
+                                    <constraint firstAttribute="height" constant="50" id="r7D-fg-3ji"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
-                                <state key="normal" title="Login With Facebook">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
                                 <connections>
-                                    <action selector="logInButton:" destination="Zne-eU-VaE" eventType="touchUpInside" id="CNF-mc-LKP"/>
-                                    <action selector="loginAuthWithFacebook:" destination="Zne-eU-VaE" eventType="touchUpInside" id="UjF-UW-e6H"/>
+                                    <action selector="FBbuttonView:" destination="Zne-eU-VaE" eventType="valueChanged" id="Y4d-o1-bZc"/>
                                 </connections>
-                            </button>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -152,6 +147,7 @@
                             <constraint firstItem="wBd-o9-5kI" firstAttribute="trailing" secondItem="sEj-tB-eSE" secondAttribute="trailingMargin" id="1V9-Uu-FZ2"/>
                             <constraint firstItem="POw-zW-dvL" firstAttribute="trailing" secondItem="sEj-tB-eSE" secondAttribute="trailingMargin" id="1wX-xQ-qsx"/>
                             <constraint firstItem="q7c-Ib-Puo" firstAttribute="centerY" secondItem="sEj-tB-eSE" secondAttribute="centerY" constant="190" id="48A-e1-hiR"/>
+                            <constraint firstAttribute="bottom" secondItem="eJj-iF-P27" secondAttribute="bottom" constant="20" symbolic="YES" id="7gP-y3-018"/>
                             <constraint firstItem="ybX-da-6d9" firstAttribute="leading" secondItem="sEj-tB-eSE" secondAttribute="leadingMargin" id="9pw-bt-mcr"/>
                             <constraint firstItem="jZ9-fA-XBf" firstAttribute="leading" secondItem="sEj-tB-eSE" secondAttribute="leadingMargin" id="LYH-X6-prG"/>
                             <constraint firstItem="jZ9-fA-XBf" firstAttribute="top" secondItem="686-9v-mUr" secondAttribute="bottom" constant="8" id="M3p-vc-gHF"/>
@@ -161,7 +157,7 @@
                             <constraint firstItem="8Fy-i8-lOS" firstAttribute="top" secondItem="jZ9-fA-XBf" secondAttribute="bottom" constant="8" id="SEk-vT-XLr"/>
                             <constraint firstItem="686-9v-mUr" firstAttribute="centerX" secondItem="sEj-tB-eSE" secondAttribute="centerX" id="Siu-1n-zzg"/>
                             <constraint firstItem="ybX-da-6d9" firstAttribute="leading" secondItem="sEj-tB-eSE" secondAttribute="leadingMargin" id="TKD-NB-ReX"/>
-                            <constraint firstItem="ZcV-6t-nxS" firstAttribute="top" secondItem="gwL-CL-ubu" secondAttribute="bottom" constant="20" id="TdN-eD-Knc"/>
+                            <constraint firstItem="eJj-iF-P27" firstAttribute="trailing" secondItem="wBd-o9-5kI" secondAttribute="trailing" id="XUp-EN-uUg"/>
                             <constraint firstItem="wBd-o9-5kI" firstAttribute="top" secondItem="ybX-da-6d9" secondAttribute="bottom" constant="8" id="ZM8-ls-Kzo"/>
                             <constraint firstItem="8Fy-i8-lOS" firstAttribute="trailing" secondItem="sEj-tB-eSE" secondAttribute="trailingMargin" id="ZuU-ks-t1v"/>
                             <constraint firstItem="8Fy-i8-lOS" firstAttribute="trailing" secondItem="sEj-tB-eSE" secondAttribute="trailingMargin" id="b8T-2X-1Ey"/>
@@ -169,16 +165,14 @@
                             <constraint firstItem="wBd-o9-5kI" firstAttribute="leading" secondItem="sEj-tB-eSE" secondAttribute="leadingMargin" id="bS4-N1-Ams"/>
                             <constraint firstItem="POw-zW-dvL" firstAttribute="centerX" secondItem="sEj-tB-eSE" secondAttribute="centerX" id="cUr-GE-6Tp"/>
                             <constraint firstItem="POw-zW-dvL" firstAttribute="leading" secondItem="sEj-tB-eSE" secondAttribute="leadingMargin" id="dTh-gY-pxA"/>
-                            <constraint firstItem="gwL-CL-ubu" firstAttribute="top" secondItem="q7c-Ib-Puo" secondAttribute="bottom" constant="30" id="dih-kr-RXx"/>
                             <constraint firstItem="POw-zW-dvL" firstAttribute="top" secondItem="8Fy-i8-lOS" secondAttribute="bottom" constant="8" id="fm0-Sc-tJZ"/>
-                            <constraint firstItem="gwL-CL-ubu" firstAttribute="leading" secondItem="sEj-tB-eSE" secondAttribute="leadingMargin" id="fxg-SS-Z3X"/>
-                            <constraint firstItem="gwL-CL-ubu" firstAttribute="trailing" secondItem="sEj-tB-eSE" secondAttribute="trailingMargin" id="gKv-t1-VXd"/>
                             <constraint firstItem="9Rj-0n-I4g" firstAttribute="trailing" secondItem="sEj-tB-eSE" secondAttribute="trailingMargin" id="iGG-mX-3oH"/>
                             <constraint firstItem="POw-zW-dvL" firstAttribute="trailing" secondItem="sEj-tB-eSE" secondAttribute="trailingMargin" id="l5m-VL-Fp6"/>
                             <constraint firstItem="POw-zW-dvL" firstAttribute="leading" secondItem="sEj-tB-eSE" secondAttribute="leadingMargin" id="pqZ-Yq-1il"/>
                             <constraint firstItem="8Fy-i8-lOS" firstAttribute="leading" secondItem="sEj-tB-eSE" secondAttribute="leadingMargin" id="qL9-1B-FNg"/>
                             <constraint firstItem="9Rj-0n-I4g" firstAttribute="top" secondItem="ybX-da-6d9" secondAttribute="bottom" constant="8" id="rTy-ZV-vOP"/>
                             <constraint firstItem="ybX-da-6d9" firstAttribute="trailing" secondItem="sEj-tB-eSE" secondAttribute="trailingMargin" id="ydn-fC-4Wa"/>
+                            <constraint firstItem="eJj-iF-P27" firstAttribute="leading" secondItem="wBd-o9-5kI" secondAttribute="leading" id="zUf-4U-WAH"/>
                             <constraint firstItem="ybX-da-6d9" firstAttribute="trailing" secondItem="sEj-tB-eSE" secondAttribute="trailingMargin" id="zYg-DZ-EPr"/>
                         </constraints>
                     </view>
@@ -186,7 +180,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="q7c-Ib-Puo" id="b7t-74-yzg"/>
                         <outlet property="emailTextField" destination="8Fy-i8-lOS" id="RKh-qA-4Ra"/>
-                        <outlet property="facebookauth" destination="gwL-CL-ubu" id="aOo-LK-4Gd"/>
+                        <outlet property="fbLoginView" destination="eJj-iF-P27" id="tOG-jD-eZn"/>
                         <outlet property="logInText" destination="jZ9-fA-XBf" id="mzo-4z-kXl"/>
                         <outlet property="loginButton" destination="ybX-da-6d9" id="ld7-hs-1jp"/>
                         <outlet property="mainView" destination="sEj-tB-eSE" id="ohm-JF-z1x"/>

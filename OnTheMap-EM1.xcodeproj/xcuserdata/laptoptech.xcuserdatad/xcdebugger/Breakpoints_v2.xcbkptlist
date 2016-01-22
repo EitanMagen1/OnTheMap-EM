@@ -115,53 +115,5 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PinSample/LogInViewController.swift"
-            timestampString = "475063674.885017"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "loginAuthWithFacebook(_:)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "OnTheMap_EM1.LogInViewController.loginAuthWithFacebook (OnTheMap_EM1.LogInViewController)(Swift.AnyObject) -&gt; ()"
-                  moduleName = "OnTheMap-EM1"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/laptoptech/Desktop/NanoDegree/OnTheMap-EM1/PinSample/LogInViewController.swift"
-                  timestampString = "475062753.295168"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "89"
-                  endingLineNumber = "89"
-                  offsetFromSymbolStart = "165">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "OnTheMap_EM1.LogInViewController.(loginAuthWithFacebook (OnTheMap_EM1.LogInViewController) -&gt; (Swift.AnyObject) -&gt; ()).(closure #1)"
-                  moduleName = "OnTheMap-EM1"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/laptoptech/Desktop/NanoDegree/OnTheMap-EM1/PinSample/LogInViewController.swift"
-                  timestampString = "475062753.295958"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "90"
-                  endingLineNumber = "90"
-                  offsetFromSymbolStart = "19">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

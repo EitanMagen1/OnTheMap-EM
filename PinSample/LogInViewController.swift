@@ -25,27 +25,34 @@ class LogInViewController: UIViewController ,FBSDKLoginButtonDelegate {
     @IBOutlet weak var facebookauth: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+   // @IBAction func FBbuttonView(sender: AnyObject) {
+  //  }
+    @IBOutlet weak var fbLoginView: FBSDKLoginButton!
+        
+    
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+       
         if (FBSDKAccessToken.currentAccessToken() != nil)
         {
             
         }
         else
         {
-            let loginView : FBSDKLoginButton = FBSDKLoginButton()
-            self.view.addSubview(loginView)
-            loginView.center = self.view.center
-            loginView.readPermissions = ["public_profile", "email", "user_friends"]
-            loginView.delegate = self
+            fbLoginView.delegate = self
+            fbLoginView.readPermissions = ["public_profile", "email", "user_friends"]
+            FBSDKProfile.enableUpdatesOnAccessTokenChange(true)
         }
     }
 
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         print("User Logged In")
+       
         
+
         if ((error) != nil)
         {
             // Process error
@@ -59,12 +66,20 @@ class LogInViewController: UIViewController ,FBSDKLoginButtonDelegate {
             if result.grantedPermissions.contains("email")
             {
                 // Do work
+                print("i am here")
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.passwordTextField.text = ""
+                    self.showActivityIndicator()//flips the condition of the indictor , stops the animation once logged in
+                    self.performSegueWithIdentifier("NavigationSague", sender: self)
+                })
             }
+            
         }
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         print("User Logged Out")
+        print("i reached this line when loging out!")
     }
     
     func returnUserData() {
@@ -95,13 +110,6 @@ class LogInViewController: UIViewController ,FBSDKLoginButtonDelegate {
         }
     }
     
-    @IBAction func loginAuthWithFacebook(sender: AnyObject) {
-        dispatch_async(dispatch_get_main_queue(), {
-            self.showActivityIndicator()//flips the condition of the indictor , stops the animation once logged in
-            self.performSegueWithIdentifier("NavigationSague", sender: self)
-        })
-      
-    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
