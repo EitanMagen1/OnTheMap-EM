@@ -10,7 +10,7 @@ import UIKit
 import FBSDKLoginKit
 import FBSDKCoreKit
 class LogInViewController: UIViewController ,FBSDKLoginButtonDelegate {
-
+    
     var appDelegate : AppDelegate!
     static let sheredInstance = LogInViewController()
     
@@ -25,37 +25,36 @@ class LogInViewController: UIViewController ,FBSDKLoginButtonDelegate {
     @IBOutlet weak var facebookauth: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-   // @IBAction func FBbuttonView(sender: AnyObject) {
-  //  }
+    // @IBAction func FBbuttonView(sender: AnyObject) {
+    //  }
     @IBOutlet weak var fbLoginView: FBSDKLoginButton!
-        
     
     
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-       
+        
         if (FBSDKAccessToken.currentAccessToken() != nil)
         {
-            
+          let loginManager = FBSDKLoginManager()
+            FBSDKLoginManager.logOut(loginManager)()
         }
         else
         {
             fbLoginView.delegate = self
             fbLoginView.readPermissions = ["public_profile", "email", "user_friends"]
             FBSDKProfile.enableUpdatesOnAccessTokenChange(true)
+            
         }
     }
-
+    
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         print("User Logged In")
-       
-        
-
         if ((error) != nil)
         {
-            // Process error
+            self.presentError(error!.description)
         }
         else if result.isCancelled {
             // Handle cancellations
@@ -66,12 +65,27 @@ class LogInViewController: UIViewController ,FBSDKLoginButtonDelegate {
             if result.grantedPermissions.contains("email")
             {
                 // Do work
-                print("i am here")
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.passwordTextField.text = ""
-                    self.showActivityIndicator()//flips the condition of the indictor , stops the animation once logged in
-                    self.performSegueWithIdentifier("NavigationSague", sender: self)
+                logInText.text = "LogIn to Udacity With FB"
+                var userInfo = [String:String]()
+                userInfo[UdacityConstants.JSONKeys.access_token] = FBSDKAccessToken.currentAccessToken().tokenString
+                let jsonBody = [UdacityConstants.JSONKeys.facebook_mobile: userInfo] //build the json body a array of dictianary
+                
+                UdacityModel.sheredInstance.requestForPOSTSession(jsonBody , completionHandler: {(success, errorType) -> Void in
+                    if success {
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.showActivityIndicator()//flips the condition of the indictor , stops the animation once logged in
+                            self.performSegueWithIdentifier("NavigationSague", sender: self)
+                        })
+                    } else if errorType != nil {
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.showActivityIndicator()//flips the condition of the indictor , stops the animation once logged in
+                            self.presentError(errorType!)
+                        })
+                        
+                    }
+                    
                 })
+                
             }
             
         }
@@ -79,7 +93,6 @@ class LogInViewController: UIViewController ,FBSDKLoginButtonDelegate {
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         print("User Logged Out")
-        print("i reached this line when loging out!")
     }
     
     func returnUserData() {
@@ -104,7 +117,7 @@ class LogInViewController: UIViewController ,FBSDKLoginButtonDelegate {
     
     @IBAction func signUpButtonTouchUp(sender: UIButton) {
         if let requestUrl = NSURL(string: "https://www.udacity.com/account/auth#!/signin") {
-        UIApplication.sharedApplication().openURL(requestUrl)
+            UIApplication.sharedApplication().openURL(requestUrl)
         } else {
             presentError("Error opening url: " + "https://www.udacity.com/account/auth#!/signin")
         }
@@ -113,46 +126,45 @@ class LogInViewController: UIViewController ,FBSDKLoginButtonDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        //facebookauth.hidden = true
         emailTextField.text = ""
         passwordTextField.text = ""
         activityIndicator.hidden = true
     }
     
     @IBAction func logInButton(sender: UIButton) {
-            logInText.text = "LogIn to Udacity"
-            var userInfo = [String:String]()
-            userInfo[UdacityConstants.JSONKeys.Username] = emailTextField.text
-            userInfo[UdacityConstants.JSONKeys.Password] = passwordTextField.text
-            let jsonBody = [UdacityConstants.JSONKeys.Udacity: userInfo] //build the json body a array of dictianary
-
-            if emailTextField.text!.isEmpty {
-                logInText.text = "Username Empty."
-                return
-            } else if passwordTextField.text!.isEmpty {
-                logInText.text = "Password Empty."
-                return
-            }
-                showActivityIndicator()//starts the animation of the login indicator until we loged in!
+        logInText.text = "LogIn to Udacity"
+        var userInfo = [String:String]()
+        userInfo[UdacityConstants.JSONKeys.Username] = emailTextField.text
+        userInfo[UdacityConstants.JSONKeys.Password] = passwordTextField.text
+        let jsonBody = [UdacityConstants.JSONKeys.Udacity: userInfo] //build the json body a array of dictianary
+        
+        if emailTextField.text!.isEmpty {
+            logInText.text = "Username Empty."
+            return
+        } else if passwordTextField.text!.isEmpty {
+            logInText.text = "Password Empty."
+            return
+        }
+        showActivityIndicator()//starts the animation of the login indicator until we loged in!
         
         UdacityModel.sheredInstance.requestForPOSTSession(jsonBody , completionHandler: {(success, errorType) -> Void in
-                    if success {
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self.passwordTextField.text = ""
-                            self.showActivityIndicator()//flips the condition of the indictor , stops the animation once logged in
-                            self.performSegueWithIdentifier("NavigationSague", sender: self)
-                        })
-                    } else if errorType != nil {
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self.showActivityIndicator()//flips the condition of the indictor , stops the animation once logged in
-                            self.presentError(errorType!)
-                        })
-                        
-                    }
-
+            if success {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.passwordTextField.text = ""
+                    self.showActivityIndicator()//flips the condition of the indictor , stops the animation once logged in
+                    self.performSegueWithIdentifier("NavigationSague", sender: self)
                 })
-    }
+            } else if errorType != nil {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.showActivityIndicator()//flips the condition of the indictor , stops the animation once logged in
+                    self.presentError(errorType!)
+                })
+                
+            }
             
+        })
+    }
+    
     func showActivityIndicator() {
         if activityIndicator.hidden {
             activityIndicator.hidden = false
@@ -161,12 +173,12 @@ class LogInViewController: UIViewController ,FBSDKLoginButtonDelegate {
             activityIndicator.stopAnimating()
             activityIndicator.hidden = true
             activityIndicator.hidesWhenStopped = true
-
-
+            
+            
         }
     }
     
-     override func presentError(alertString: String){
+    override func presentError(alertString: String){
         /* Set transaction for when shake animation ceases */
         showActivityIndicator()
         CATransaction.begin()
@@ -197,7 +209,7 @@ class LogInViewController: UIViewController ,FBSDKLoginButtonDelegate {
         /* Commit transaction */
         CATransaction.commit()
     } //Error handeler
-
+    
     
 }
 

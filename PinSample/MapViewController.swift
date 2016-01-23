@@ -8,6 +8,9 @@
 
 import UIKit
 import MapKit
+import FBSDKLoginKit
+import FBSDKCoreKit
+
 
 /**
  * This view controller demonstrates the objects involved in displaying pins on a map.
@@ -105,7 +108,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             if success {
                 self.dismissViewControllerAnimated(true, completion: { () -> Void in
                 })
-                            } else {
+                } else {
                 self.presentError("There was an error with the loging out process")
             }
         }
